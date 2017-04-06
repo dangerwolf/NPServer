@@ -1,0 +1,10 @@
+{
+  "page": {
+    "files":["./layout/**/*.jade","./views/*.ejs","./views/**/*.ejs"] ,
+    "output": "./static/js/eustia.js"
+  },
+  "node": {
+    "files": ["./lib/*.js", "./tool/**/*.js","./routes/**/*.js","./routes/*.js"],
+    "output": "./lib/util.js"
+  }
+}

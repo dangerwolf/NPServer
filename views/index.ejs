@@ -2,10 +2,22 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+   <!-- <link rel='stylesheet' href='/stylesheets/style.css' />  --->
+
+
+   <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.css' />
   </head>
-  <body>
+
+  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-cyan mdui-theme-accent-blue" >
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+
+    <button class="mdui-btn mdui-btn-raised mdui-ripple  mdui-color-theme-accent" onclick=window.location.href="./login" >进入</button>
+
+
+
+
+
   </body>
 </html>
