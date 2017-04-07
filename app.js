@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var session=require('express-session');
 
 
 var index = require('./routes/index');
@@ -18,6 +18,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+//配置EJS引擎渲染母版
 app.engine('ejs', require('ejs-mate'));
 app.locals._layoutFile = 'layout.ejs';
 
@@ -52,9 +53,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
-
+//配置session和cookie
+app.use(cookieParser("An"));
+app.use(session({
+secret:'an',
+resave:false,
+saveUninitialized:true
+}));
 
 
 

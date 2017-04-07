@@ -1,11 +1,18 @@
-
-    <h1><%= title %></h1>
+    <div id="app" v-bind:title="message">
+        <h1><%= title %></h1>
+    </div>
     <p>Welcome to <%= title %></p>
 
 
     <button class="mdui-btn mdui-btn-raised mdui-ripple  mdui-color-theme-accent" onclick=window.location.href="./login" >进入</button>
 
-    <div id="app">
-      {{ message }}
-    </div>
 
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Design by WOLF'
+            }
+        })
+    </script>

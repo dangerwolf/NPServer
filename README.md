@@ -59,7 +59,7 @@ find . -type d -empty -exec touch {}/.gitignore \;
 ~~~json
 {
   "name": "npserver",
-  "version": "0.0.0",
+  "version": "0.9.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -74,9 +74,11 @@ find . -type d -empty -exec touch {}/.gitignore \;
     "serve-favicon": "~2.3.2",
     "mysql":  "^2.13.0",
     "mdui": "^0.1.2",
-    "eustia": "^0.4.0"
+    "eustia": "^0.4.0",
+    "ejs-mate": "^2.3.0"
   }
 }
+
 ~~~
 
 
@@ -86,6 +88,10 @@ find . -type d -empty -exec touch {}/.gitignore \;
 > **mdui**：Material Design User Interface，MDUI 是一套基于 Material Design 的前端框架。轻量级、多主题切换、响应式、无依赖。http://www.mdui.org/
 >
 > **eustia**：Eustia是一个用于生成JavaScript函数库的工具。它能够扫描代码实时生成只包含所需方法的函数库。目前默认函数库除了underscore中使用较多的each、template等函数外，还包含类创建、cookie操作、Dom操作、日期格式化等实用的小库，共150+个模块，日常不断更新中。http://eustia.liriliri.io/
+>
+> **ejs-mate**：配置ejs模板。https://github.com/JacksonTian/ejs-mate
+>
+> 
 
 
 
@@ -154,9 +160,62 @@ eustia build
 
 ~~~html
 <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.min.css' />
+<script src="./stylesheets/mdui/js/mdui.min.js" type="text/javascript"></script>
 ~~~
 
-> 笔者暂未找到直接使用node_modules里的方法。
+> 因为项目默认设置的static静态目录是`public`，所以位于`node_modules`内的`mdui`无法被直接调用，故采用手动调用的方式
+
+
+
+### 配置ejs母版
+
+`ejs`的母版页功能支持需要依赖一个第三方包 [ejs-mate](https://github.com/JacksonTian/ejs-mate) 。
+
+在`app.js`中配置如下信息：
+
+~~~javascript
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+//配置EJS引擎渲染母版
+app.engine('ejs', require('ejs-mate'));
+app.locals._layoutFile = 'layout.ejs';
+~~~
+
+指定`ejs`引擎渲染`ejs`文件，接着指定使用 `ejs-mate` 做母版页引擎,最后指定母版页是 `layout.ejs`。
+
+这里有个 `app.locals` 这个变量,提一句，可以把 `locals` 理解成客户端的一个全局变量，我们现在给变量的`_alyoutFile` 属性赋值 `layout.ejs`。
+
+这样在后端指定母版页的好处是，你不需要在`views`中的`ejs`页面里特定指定谁是你的母版页。
+
+
+
+在`views`文件下创建`layout.ejs`文件，代码如下：
+
+~~~html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--页签显示title-->
+        <title><%= title %></title>
+        <meta charset="UTF-8">
+        <!--配置mdui-->
+        <script src="./stylesheets/mdui/js/mdui.min.js" type="text/javascript"></script>
+        <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.min.css'/>
+        <!--配置vue.js-->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <!--配置系统logo-->
+        <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico"/>
+    </head>
+    <!--配置了mdui主题 主题色blue，主要颜色cyan-->
+    <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-cyan mdui-theme-accent-blue">
+        <!--<%-body %> 就是每个页面的变体-->
+        <%- body %>
+
+    </body>
+</html>
+
+
+~~~
 
 
 

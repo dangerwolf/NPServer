@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+    <head>
+        <!--页签显示title-->
+        <title><%= title %></title>
+        <meta charset="UTF-8">
+        <!--配置mdui-->
+        <script src="./stylesheets/mdui/js/mdui.min.js" type="text/javascript"></script>
+        <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.min.css'/>
+        <!--配置vue.js-->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <!--配置系统logo-->
+        <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico"/>
+    </head>
+    <!--配置了mdui主题 主题色blue，主要颜色cyan-->
+    <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-cyan mdui-theme-accent-blue">
+        <!--<%-body %> 就是每个页面的变体-->
+        <%- body %>
 
-    <script src="./stylesheets/mdui/js/mdui.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-
-    <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.min.css' />
-
-
-    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico" />
-  </head>
-
-  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-cyan mdui-theme-accent-blue" >
-
-
-
-
-
-  <%-body %>
-
-
-  </body>
+    </body>
 </html>
