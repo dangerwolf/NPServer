@@ -15,6 +15,7 @@
     "serve-favicon": "~2.3.2",
     "mysql":  "^2.13.0",
     "mdui": "^0.1.2",
-    "eustia": "^0.4.0"
+    "eustia": "^0.4.0",
+    "ejs-mate": "^2.3.0"
   }
 }

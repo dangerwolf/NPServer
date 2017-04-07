@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
 
-    <script src="./stylesheets/mdui/js/mdui.min.js" type="text/javascript"></script>
-    <link rel='stylesheet' href='/stylesheets/mdui/css/mdui.min.css' />
-    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico" />
-  </head>
-
-  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-cyan mdui-theme-accent-blue" >
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
 
     <button class="mdui-btn mdui-btn-raised mdui-ripple  mdui-color-theme-accent" onclick=window.location.href="./login" >进入</button>
 
+    <div id="app">
+      {{ message }}
+    </div>
 
-
-
-
-  </body>
-</html>

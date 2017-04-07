@@ -11,4 +11,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: '岳能云推送平台' });
 });
 
+
+
+
+
+
 module.exports = router;
